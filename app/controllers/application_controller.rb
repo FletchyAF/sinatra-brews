@@ -15,7 +15,7 @@ class ApplicationController < Sinatra::Base
     helpers do
         
         def current_user
-            @user = User.find_by(id: session[:id])
+            @user = User.find_by(id: session[:user_id])
         end
 
         def redirect_if_not_logged_in
@@ -32,7 +32,7 @@ class ApplicationController < Sinatra::Base
 
         def redirect_if_not_brewmonger
             if !check_brewmonger(obj)
-                redirect '/brews'
+                redirect to '/brews'
             end
         end
 

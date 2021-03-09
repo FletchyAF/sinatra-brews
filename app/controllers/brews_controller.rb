@@ -2,7 +2,7 @@ class BrewsController < ApplicationController
 
     get '/brews' do
         redirect_if_not_logged_in
-        @items = Item.all
+        @brew = Brews.all
         erb :'brews/index'
     end
 
@@ -14,11 +14,11 @@ class BrewsController < ApplicationController
     post '/brews' do
         redirect_if_not_logged_in
         
-        brew = current_user.brews.create(params[:item])
+        brew = current_user.brews.create(params[:brew])
         if brew.valid?
-            redirect "brews/#{brew.id}"
+            redirect "/brews/#{brew.id}"
         else
-            redirect '/brewss/new'
+            redirect '/brews/new'
         end
     end
         
@@ -54,7 +54,7 @@ class BrewsController < ApplicationController
             @brew.delete
             redirect to '/brews'
         else
-            erb :'items/show'
+            erb :'brews/show'
         end
     end
 end

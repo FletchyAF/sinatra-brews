@@ -26,7 +26,7 @@ class ApplicationController < Sinatra::Base
             obj && obj.user == current_user
         end
 
-        def redirect_if_not_brewmonger
+        def redirect_if_not_brewmonger(obj)
             if !check_brewmonger(obj)
                 redirect to '/brews'
             end

@@ -1,9 +1,9 @@
 <h1>Brew</h1>
 
-<p><%= @brew.name %> - <%= Brew.draft %></p>
+<p><%= @brew.name %> - <%= @brew.draft %></p>
 
 
-<% if check_owner(@brew) %>
+<% if check_brewmonger(@brew) %>
   <form action="/brews/<%=@brew.id%>" method="post">
     <input type="hidden" name="_method" value="delete">
     <input type="submit" value="Delete">

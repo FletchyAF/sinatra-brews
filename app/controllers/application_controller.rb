@@ -7,8 +7,8 @@ class ApplicationController < Sinatra::Base
         set :session_secret, 'placeholder'
     end
 
-    get '/' do
-        @name = name
+    get('/') do
+        @name = "Brewster"
         erb :homepage
     end
 
@@ -22,10 +22,6 @@ class ApplicationController < Sinatra::Base
             redirect to '/login' unless current_user
         end
 
-        def set_brew
-            @brew = Brew.find_by(id: params[:id])
-        end
-
         def check_brewmonger(obj)
             obj && obj.user == current_user
         end
@@ -36,5 +32,8 @@ class ApplicationController < Sinatra::Base
             end
         end
 
+        def set_brew
+            @brew = Brew.find_by(id: params[:id])
+        end
     end
 end

@@ -1,7 +1,7 @@
 <h1>Welcome to <%= @user.username %>'s List of Best Brews! </h1>
 
 <ul>
-  <% @items.each do |item| %>
+  <% @brews.each do |brew| %>
     <li><a href="/brews<%=brew.id%>"><%=brew.name%></a></li>
   <%end%>
 

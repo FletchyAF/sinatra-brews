@@ -2,7 +2,7 @@ class BrewsController < ApplicationController
 
     get '/brews' do
         redirect_if_not_logged_in
-        @brew = Brews.all
+        @brews = Brew.all
         erb :'brews/index'
     end
 
@@ -13,20 +13,16 @@ class BrewsController < ApplicationController
 
     post '/brews' do
         redirect_if_not_logged_in
-        
-        brew = current_user.brews.create(params[:brew])
-        if brew.valid?
-            redirect "/brews/#{brew.id}"
-        else
-            redirect '/brews/new'
-        end
+        brew = Brew.create(params[:brews])
+        user = User.find_by(id: session[:user_id])
+        user.brews << brew
     end
         
     get '/brews/:id' do
         redirect_if_not_logged_in
         set_brew
         if !@brew
-            redirect '/brew'
+            redirect '/brews'
         end
         erb :'/brews/show'
     end
@@ -42,7 +38,7 @@ class BrewsController < ApplicationController
         redirect_if_not_logged_in
         set_brew
         if check_brewmonger(@brew)
-            @brew.update(params[:brew])
+            @brew.update(params[:brews])
         end
         erb :'/brews/show'
     end

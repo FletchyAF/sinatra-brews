@@ -1,13 +1,13 @@
-class UsersControll < ApplicationController
+class UsersController < ApplicationController
 
-    get 'signup' do
+    get '/signup' do
         if session[:user_id]
             redirect to "/users/#{session[:user_id]}"
         end
         erb :'/users/signup'
     end
 
-    post 'signup' do
+    post '/signup' do
         user = User.create(params[:user])
         if user.id
             session[:user_id] = user.id
@@ -20,7 +20,7 @@ class UsersControll < ApplicationController
     get '/users/:id' do
         redirect_if_not_logged_in
             @user = User.find_by(id: params[:id])
-            @items = @user.brews
+            @brews = @user.brews
             erb :'/users/show'
     end
 
@@ -28,7 +28,7 @@ class UsersControll < ApplicationController
         if session[:user_id]
           redirect "/users/#{session[:user_id]}"
         end
-        erb :'/users/login'
+        erb :'users/login'
       end
     
       post '/login' do

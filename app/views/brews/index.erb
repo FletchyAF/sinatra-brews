@@ -1,0 +1,8 @@
+<h1>All Brews</h1>
+
+<ul>
+  <% @brews.each do |brew| %>
+    <li><a href="/brews/<%=brew.id%>"><%=brew.name%></a></li>
+  <%end%>
+
+</ul>

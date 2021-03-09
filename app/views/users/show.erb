@@ -1,0 +1,8 @@
+<h1>Welcome to <%= @user.username %>'s List of Best Brews! </h1>
+
+<ul>
+  <% @items.each do |item| %>
+    <li><a href="/brews<%=brew.id%>"><%=brew.name%></a></li>
+  <%end%>
+
+</ul>

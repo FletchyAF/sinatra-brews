@@ -1,0 +1,11 @@
+<h1>Edit Brew</h1>
+
+
+<form action="/brew/<%=@brew.id %>" method="post">
+  <input type="hidden" name="_method" value="patch">
+  <label>Brew Name: </label>
+  <input type="text" name="brew[name]" value="<%=@brew.name%>">
+  <label>Brew type: </label> #IPA, Ale, Malt, ect.
+  <input type="text" name="brew[type]"  value="<%=@brew.type%>">
+  <input type="submit">
+</form>

@@ -1,0 +1,13 @@
+<h1>Brew</h1>
+
+<p><%= @brew.name %> - <%= Brew.type %></p>
+
+
+<% if check_owner(@brew) %>
+  <form action="/brews/<%=@brew.id%>" method="post">
+    <input type="hidden" name="_method" value="delete">
+    <input type="submit" value="Delete">
+  </form>
+
+  <a href="/items/<%=@item.id%>/edit">Edit this Item</a>
+<%end %>

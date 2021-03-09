@@ -18,7 +18,7 @@ class UsersController < ApplicationController
     end
 
     get '/users/:id' do
-        redirect_if_not_logged_in
+        # redirect_if_not_logged_in
             @user = User.find_by(id: params[:id])
             @brews = @user.brews
             erb :'/users/show'
@@ -26,17 +26,17 @@ class UsersController < ApplicationController
 
     get '/login' do
         if session[:user_id]
-          redirect "/users/#{session[:user_id]}"
+          redirect to "/users/#{session[:user_id]}"
         end
-        erb :'users/login'
+         erb :'users/login'
       end
     
       post '/login' do
         user = User.find_by(username: params[:user][:username])
     
-        if user && user.authenticate(params[:user][:password])
+        if user && user.authenticate(params[:user][:password_digest])
           session[:user_id] = user.id
-          redirect "/users/#{user.id}"
+          redirect to "/users/#{user.id}"
         else
           erb :'users/login'
         end
